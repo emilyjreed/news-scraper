@@ -9,11 +9,6 @@ const bodyParser = require("body-parser");
 
 const PORT = process.env.PORT || 8080;
 
-// const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/articlescraperdb";
-
-// mongoose.Promise = Promise;
-// mongoose.connect(MONGODB_URI);
-
 const databaseURI = 'mongodb://localhost:27017/articlescraperdb';
 
 if (process.env.MONGODB_URI) {
