@@ -1,0 +1,33 @@
+body {
+    height: 100%;
+    background: 
+    linear-gradient(
+        rgba(3, 3, 3, 0.25),
+        rgba(3, 3, 3, 0.25)
+    ), 
+    url(../images/mr-cup-fabien-barral-634461-unsplash.jpg);
+    background-size: cover;
+}
+
+.card-header {
+    color: white !important;
+}
+
+.articleLink:hover {
+    text-decoration: none !important;
+    opacity: 0.5;
+    transition: 0.5s;
+}
+
+#cardArticle {
+    background: 
+    linear-gradient(
+        rgba(3, 3, 3, 0.60),
+        rgba(3, 3, 3, 0.60)
+    );
+    color: white !important;
+}
+
+#mainNav {
+    background-color: #212529 !important;
+}

@@ -4,7 +4,7 @@ const db = require("../models");
 
 module.exports = function (app) {
     app.get("/scrape", (req, res) => {
-        request("https://www.nytimes.com", function (err, response, html) {
+        request("https://www.nytimes.com/section/technology?", function (err, response, html) {
             const $ = cheerio.load(html);
             let results = [];
             $(".initial-set").next().find("li").each((i, element) => {

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary" id="mainNav">
     <a class="navbar-brand" href="/">News Scraper Home</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01"
         aria-expanded="false" aria-label="Toggle navigation">
@@ -22,7 +22,7 @@
         </div>
         <div>
             <a href="/">
-                <button type="button" class="btn btn-warning btn-lg btn-block">Browse available articles</button>
+                <button type="button" class="btn btn-outline-info btn-lg btn-block">Browse available articles</button>
             </a>
         </div>
         <div class="col-md-2"></div>
@@ -32,8 +32,8 @@
 {{/unless}} {{#each savedNews}}
 <div class="class row">
     <div class="class col-md-3 col-sm-2"></div>
-    <div class="card mb-3 col-md-6 col-sm-8 col-xs-12">
-        <a href={{link}}>
+    <div class="card mb-3 col-md-6 col-sm-8 col-xs-12" id="cardArticle">
+        <a href={{link}} target="_blank" class="articleLink">
             <h3 class="card-header">{{title}}</h3>
         </a>
         <div class="card-body row">
@@ -43,12 +43,12 @@
             <div class="col-md-6">
                 <p>
                     <span class="card-title">{{author}}</span>
-                    <span style="color:brown">|</span>
+                    <span style="color:grey">|</span>
                     <span class="card-subtitle text-muted">{{time}}</pan>
                 </p>
                 <p class="card-text">{{summary}}</p>
                 <button type="button" class="addComment btn btn-sm btn-info" data-toggle="modal" data-target="#commentModal" data-id={{_id}}>Comments</button>
-                <button class="unsave btn btn-sm btn-primary disabled" data-id={{_id}}>unsave</button>
+                <button class="unsave btn btn-sm btn-danger" data-id={{_id}}>unsave</button>
             </div>
         </div>
     </div>
