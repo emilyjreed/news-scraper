@@ -7,18 +7,22 @@ module.exports = function (app) {
         request("https://www.nytimes.com", function (err, response, html) {
             const $ = cheerio.load(html);
             let results = [];
-            $(".listingResult").each((i, element) => {
-                if (i > 0) {
-                    const title = $(element).find(".article-name").text().trim();
-                    const author = $(element).find(".byline span").last().text().trim();
-                    const time = $(element).find(".published-date").attr("datetime");
-                    const summary = $(element).find(".synopsis").clone().children().remove().end().text().trim();
-                    const link = $(element).children("a").attr("href");
-                    const photoURL = $(element).find("img").data("src");
-                    results.push({ title, author, time, summary, link, photoURL })
+            $(".initial-set").next().find("li").each((i, element) => {
+                if (/story-id-.*/i.test($(element).attr("id"))) {
+                    const newArticle = {};
+                    newArticle.title = $(element).find(".story-meta").find(".headline").text().trim();
+                    if (results.find( item => item.title === newArticle.title )) {
+                        return;
+                    }
+                    newArticle.author = $(element).find(".story-meta").find(".byline").text().trim();
+                    newArticle.time = $(element).find(".dateline").attr("datetime");
+                    newArticle.summary = $(element).find(".story-meta").find(".summary").text().trim();
+                    newArticle.link = $(element).find(".story-link").attr("href");
+                    newArticle.photoURL = $(element).find("img").attr("src");
+                    results.push(new db.News(newArticle));
                 }
             });
-            db.News.find({}, "-_id title", (err, existingNews) => {
+            db.News.find({}, "_id title", (err, existingNews) => {
                 if (err) throw err;
                 const existingTitles = new Set(existingNews.map(a => a.title));
                 const newResults = results.filter(b => {

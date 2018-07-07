@@ -22,17 +22,17 @@ $(document).ready(function () {
         });
     });
 
-    $(".scrape").on("click", function () {
+    $(".scrape").on("click", function() {
         $.get("/scrape", (data, status) => {
             if (data.numOfnewItems > 0) {
                 $(".report").text(`${data.numOfnewItems} more articles added`)
             }
             $(".articleCounter").modal("show");
-            $('.articleCounter').on('hidden.bs.modal', function () {
+            $('.articleCounter').on('hidden.bs.modal', function() {
                 location.reload();
-            })
+            });
 
-        })
+        });
     });
 
     $(".addComment").on("click", function () {
