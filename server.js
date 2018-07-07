@@ -9,14 +9,24 @@ const bodyParser = require("body-parser");
 
 const PORT = process.env.PORT || 8080;
 
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/articlescraperdb";
+// const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/articlescraperdb";
+
+// mongoose.Promise = Promise;
+// mongoose.connect(MONGODB_URI);
+
+const databaseURI = 'mongodb://localhost:27017/articlescraperdb';
+
+if (process.env.MONGODB_URI) {
+    mongoose.connect(process.env.MONGODB_URI);
+} else {
+    mongoose.connect(databaseURI);
+}
+
+var db = mongoose.connection;
 
 app.engine("handlebars", exphbs({defaultLayout: "main"}));
 app.set("view engine", "handlebars");
 app.use(express.static("public"));
-
-mongoose.Promise = Promise;
-mongoose.connect(MONGODB_URI);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
