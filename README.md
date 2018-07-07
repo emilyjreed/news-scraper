@@ -1,4 +1,4 @@
-[Click here to view my Heroku page] (https://peaceful-ocean-65415.herokuapp.com/)
+[Click here to view my Heroku page](https://peaceful-ocean-65415.herokuapp.com/)
 
 # NYT-Mongo-News-Scraper
 
